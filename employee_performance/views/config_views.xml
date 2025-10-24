@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Level -->
+    <record id="view_performance_level_list" model="ir.ui.view">
+        <field name="name">performance.level.list</field>
+        <field name="model">performance.level</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="level_seq"/>
+                <field name="level_name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_performance_level_form" model="ir.ui.view">
+        <field name="name">performance.level.form</field>
+        <field name="model">performance.level</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="level_seq" readonly="1"/>
+                        <field name="level_name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Objective -->
+    <record id="view_performance_objective_list" model="ir.ui.view">
+        <field name="name">performance.objective.list</field>
+        <field name="model">performance.objective</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="objective_seq"/>
+                <field name="objective_name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_performance_objective_form" model="ir.ui.view">
+        <field name="name">performance.objective.form</field>
+        <field name="model">performance.objective</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="objective_seq" readonly="1"/>
+                        <field name="objective_name"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Level wise target -->
+    <record id="view_performance_level_target_list" model="ir.ui.view">
+        <field name="name">performance.level.target.list</field>
+        <field name="model">performance.level.target</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="level_id"/>
+                <field name="objective_id"/>
+                <field name="target_percentage"/>
+                <field name="timeline_from"/>
+                <field name="timeline_to"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_performance_level_target_form" model="ir.ui.view">
+        <field name="name">performance.level.target.form</field>
+        <field name="model">performance.level.target</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="level_id"/>
+                        <field name="objective_id"/>
+                        <field name="target_percentage"/>
+                    </group>
+                    <group>
+                        <field name="timeline_from"/>
+                        <field name="timeline_to"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- actions and menu under Configuration -->
+    <record id="action_performance_levels" model="ir.actions.act_window">
+        <field name="name">Levels</field>
+        <field name="res_model">performance.level</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_performance_objectives" model="ir.actions.act_window">
+        <field name="name">Objectives</field>
+        <field name="res_model">performance.objective</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_performance_level_targets" model="ir.actions.act_window">
+        <field name="name">Level Targets</field>
+        <field name="res_model">performance.level.target</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

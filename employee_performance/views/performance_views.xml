@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Employee Performance list (use <list> not <tree>) -->
+    <record id="view_employee_performance_list" model="ir.ui.view">
+        <field name="name">employee.performance.list</field>
+        <field name="model">employee.performance</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="employee_id"/>
+                <field name="level_id"/>
+                <field name="objective_id"/>
+                <field name="achieved_percentage"/>
+                <field name="rating"/>
+                <field name="final_rating"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Employee Performance form: use invisible="not show_x" style -->
+    <record id="view_employee_performance_form" model="ir.ui.view">
+        <field name="name">employee.performance.form</field>
+        <field name="model">employee.performance</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="employee_id"/>
+                        <field name="level_id"/>
+                        <field name="objective_id"/>
+                        <field name="level_target_id"/>
+                        <field name="target_percentage" readonly="1"/>
+                        <field name="timeline_from"/>
+                        <field name="timeline_to"/>
+                    </group>
+
+                    <group string="Objective Inputs">
+                        <!-- job completed -->
+                        <field name="number_of_job_completed" invisible="not show_job_completed"/>
+                        <field name="number_of_wo" invisible="not show_job_completed or not show_job_fixed"/>
+
+                        <!-- job fixed -->
+                        <field name="number_of_job_fixed_single_visit" invisible="not show_job_fixed"/>
+
+                        <!-- presence vs schedule -->
+                        <field name="number_of_job_attend" invisible="not show_presence_vs_schedule"/>
+                        <field name="number_of_job_scheduled" invisible="not show_presence_vs_schedule"/>
+
+                        <!-- service reports -->
+                        <field name="number_of_job_completed" invisible="not show_service_report"/>
+                        <field name="number_of_job_submitted" invisible="not show_service_report"/>
+
+                        <!-- safety -->
+                        <field name="number_of_job_opportunities" invisible="not show_safety_incidents"/>
+                        <field name="number_of_incidents" invisible="not show_safety_incidents"/>
+
+                        <!-- quality -->
+                        <field name="achieve_rating" invisible="not show_quality_score"/>
+                    </group>
+
+                    <group string="Calculations">
+                        <field name="achieved_percentage" readonly="1"/>
+                        <field name="weightage"/>
+                        <field name="rating"/>
+                        <field name="final_rating" readonly="1"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Special Factors/Other Circumstances">
+                            <field name="special_factors"/>
+                        </page>
+                        <page string="Appraisee's Comments/Reviews">
+                            <field name="appraisee_comments"/>
+                        </page>
+                        <page string="Overall Summary (Appraiser)">
+                            <field name="overall_summary"/>
+                        </page>
+                        <page string="Comments by Appraiser's Manager / Supervisor">
+                            <field name="manager_comments"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_employee_performance_entries" model="ir.actions.act_window">
+        <field name="name">Employee Performance</field>
+        <field name="res_model">employee.performance</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
