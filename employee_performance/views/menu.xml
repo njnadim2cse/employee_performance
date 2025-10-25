@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Root menu for Employee Performance -->
+    <menuitem id="menu_employee_performance_root" name="Track Performance" sequence="30"/>
+
+    <!-- Dashboard menu -->
+    <menuitem id="menu_employee_performance_dashboard" name="Dashboard"
+              parent="menu_employee_performance_root"
+              action="action_employee_performance_dashboard"
+              sequence="1"/>
+
+    <!-- Employee Performance menu -->
+    <menuitem id="menu_employee_performance_main" name="Employee Performance"
+              parent="menu_employee_performance_root"
+              action="action_employee_performance_entries"
+              sequence="2"/>
+
+    <!-- Employee KPI menu -->
+    <menuitem id="menu_employee_kpi" name="Employee KPI"
+              parent="menu_employee_performance_root"
+              action="action_employee_kpi_entries"
+              sequence="3"/>
+
+    <!-- Hierarchy Observation -->
+    <menuitem id="menu_performance_hierarchy" name="Hierarchy Observation"
+              parent="menu_employee_performance_root"
+              action="action_hr_employee_hierarchy"
+              sequence="4"/>
+
+    <!-- Configuration menu -->
+    <menuitem id="menu_performance_config" name="Configuration"
+              parent="menu_employee_performance_root"
+              sequence="5"/>
+
+    <!-- Configuration submenus -->
+    <menuitem id="menu_config_levels" name="Employee Level"
+              parent="menu_performance_config"
+              action="action_performance_levels"/>
+    <menuitem id="menu_config_objectives" name="Target Objective"
+              parent="menu_performance_config"
+              action="action_performance_objectives"/>
+</odoo>

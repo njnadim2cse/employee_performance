@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- extend hr.employee form; use page Performance -->
+    <record id="hr_employee_form_inherit_perf" model="ir.ui.view">
+        <field name="name">hr.employee.form.performance.inherit</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="Performance Information" col="2">
+                    <field name="employee_code"/>
+                    <field name="grade"/>
+                    <field name="division_title"/>
+                    <field name="location"/>
+                    <field name="overall_rating" readonly="1"/>
+                </group>
+                <group string="Review Information" col="2">
+                    <field name="review_date_from"/>
+                    <field name="review_date_to"/>
+                    <field name="assessment_last_year" colspan="2"/>
+                    <field name="last_promotion_year"/>
+                    <field name="highest_education"/>
+                </group>
+                <group string="Service Information" col="2">
+                    <field name="joining_date"/>
+                    <field name="length_of_service" readonly="1"/>
+                </group>
+                <group string="Team Management">
+                    <field name="team_member_ids" readonly="1"/>
+                    <button name="action_aggregate_subordinates" type="object" string="Checked" class="btn-primary"/>
+                </group>
+            </xpath>
+            <!-- Change Manager label to Supervisor -->
+            <xpath expr="//field[@name='parent_id']" position="attributes">
+                <attribute name="string">Supervisor</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

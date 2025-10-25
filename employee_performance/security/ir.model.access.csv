@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_performance_level,access.performance.level,model_performance_level,base.group_user,1,1,1,1
+access_performance_objective,access.performance.objective,model_performance_objective,base.group_user,1,1,1,1
+access_performance_level_line,access.performance.level.line,model_performance_level_objective_line,base.group_user,1,1,1,1
+access_employee_performance,access.employee.performance,model_employee_performance,base.group_user,1,1,1,1
+access_employee_performance_line,access.employee.performance.line,model_employee_performance_line,base.group_user,1,1,1,1
+access_employee_kpi,access.employee.kpi,model_employee_kpi,base.group_user,1,1,1,1
+access_employee_kpi_line,access.employee.kpi.line,model_employee_kpi_line,base.group_user,1,1,1,1

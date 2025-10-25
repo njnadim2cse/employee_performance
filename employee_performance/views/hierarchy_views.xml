@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Hierarchy View with name, job_id, and overall_rating -->
+    <record id="view_employee_hierarchy_performance" model="ir.ui.view">
+        <field name="name">hr.employee.hierarchy.performance</field>
+        <field name="model">hr.employee</field>
+        <field name="arch" type="xml">
+            <hierarchy child_field="child_ids">
+                <field name="name"/>
+                <field name="job_id"/>
+                <field name="overall_rating"/>
+                <templates>
+                    <t t-name="hierarchy-box">
+                        <div t-attf-class="o_hierarchy_node_header d-flex justify-content-center pb-4 o_hierarchy_node_color_{{ record.department_color.raw_value }}" t-att-title="record.department_id.value">
+                            <field name="image_1024" preview_image="image_128" options="{'zoom': true, 'zoom_delay': 1000}" widget="background_image"/>
+                        </div>
+                        <div class="d-flex flex-column text-center">
+                            <field class="fw-bold" name="name"/>
+                            <field name="job_id"/>
+                            <div>
+                                <span class="fw-bold">Rating: </span>
+                                <field name="overall_rating"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </hierarchy>
+        </field>
+    </record>
+
+    <!-- Hierarchy Observation Action -->
+    <record id="action_hr_employee_hierarchy" model="ir.actions.act_window">
+        <field name="name">Hierarchy Observation</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">hierarchy,kanban,list,form</field>
+        <field name="view_id" ref="view_employee_hierarchy_performance"/>
+        <field name="target">current</field>
+    </record>
+</odoo>

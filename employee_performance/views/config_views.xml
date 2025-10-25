@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Performance Level Views -->
+    <record id="view_performance_level_list" model="ir.ui.view">
+        <field name="name">performance.level.list</field>
+        <field name="model">performance.level</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="parent_level_id"/>
+                <field name="number_of_res_employees"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_performance_level_form" model="ir.ui.view">
+        <field name="name">performance.level.form</field>
+        <field name="model">performance.level</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="parent_level_id"/>
+                        </group>
+                        <group>
+                            <field name="number_of_res_employees" readonly="1"/>
+                        </group>
+                    </group>
+                    
+                    <group string="Responsible Employees">
+                        <field name="res_employee_ids" widget="many2many_tags"/>
+                    </group>
+                    
+                    <notebook>
+                        <page string="Objectives">
+                            <field name="objective_line_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="objective_id"/>
+                                    <field name="target_percentage"/>
+                                    <field name="timeline_from"/>
+                                    <field name="timeline_to"/>
+                                    <field name="timeline_duration" readonly="1"/>
+                                </list>
+                                <form>
+                                    <group>
+                                        <field name="objective_id"/>
+                                        <field name="target_percentage"/>
+                                    </group>
+                                    <group>
+                                        <field name="timeline_from"/>
+                                        <field name="timeline_to"/>
+                                        <field name="timeline_duration" readonly="1"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Performance Objective Views -->
+    <record id="view_performance_objective_list" model="ir.ui.view">
+        <field name="name">performance.objective.list</field>
+        <field name="model">performance.objective</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_performance_objective_form" model="ir.ui.view">
+        <field name="name">performance.objective.form</field>
+        <field name="model">performance.objective</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
+                    
+                    <group string="Field Visibility Control" col="4">
+                        <field name="show_job_completed" string="Job Completed"/>
+                        <field name="show_job_fixed" string="Job Fixed"/>
+                        <field name="show_presence_schedule" string="Presence vs Schedule"/>
+                        <field name="show_service_reports" string="Service Reports"/>
+                        <field name="show_safety_incidents" string="Safety Incidents"/>
+                        <field name="show_quality_score" string="Quality Score"/>
+                        <field name="show_revenue" string="Revenue"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_performance_levels" model="ir.actions.act_window">
+        <field name="name">Employee Level</field>
+        <field name="res_model">performance.level</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_performance_objectives" model="ir.actions.act_window">
+        <field name="name">Target Objective</field>
+        <field name="res_model">performance.objective</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

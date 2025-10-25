@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Employee Performance List View -->
+    <record id="view_employee_performance_list" model="ir.ui.view">
+        <field name="name">employee.performance.list</field>
+        <field name="model">employee.performance</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="supervisor_id"/>
+                <field name="level_id"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Employee Performance Form View -->
+    <record id="view_employee_performance_form" model="ir.ui.view">
+        <field name="name">employee.performance.form</field>
+        <field name="model">employee.performance</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="supervisor_id" readonly="1"/>
+                            <field name="level_id"/>
+                        </group>
+                        <group>
+                            <field name="state"/>
+                            <button name="action_mark_checked" type="object" string="Checked" class="btn-primary" invisible="state != 'draft'"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Performance Objectives">
+                            <field name="performance_line_ids">
+                                <lis editable="bottom">
+                                    <field name="objective_id"/>
+                                    <field name="target_percentage" readonly="1"/>
+                                    <field name="achieved_percentage" readonly="1"/>
+                                    <field name="timeline_from" readonly="1"/>
+                                    <field name="timeline_to" readonly="1"/>
+                                </lis>
+                                
+                                <form>
+                                    <!-- Objective Header -->
+                                    <group>
+                                        <field name="objective_id" readonly="1"/>
+                                        <field name="target_percentage" readonly="1"/>
+                                        <field name="achieved_percentage" readonly="1"/>
+                                        <field name="timeline_from" readonly="1"/>
+                                        <field name="timeline_to" readonly="1"/>
+                                    </group>
+                                    
+                                    <!-- Dynamic Field Groups -->
+                                    <group string="Achievement">
+                                        <!-- Job Completed Fields -->
+                                        <group string="Job Completion Details" invisible="not show_job_completed">
+                                            <field name="number_of_job_completed"/>
+                                            <field name="number_of_wo"/>
+                                        </group>
+                                        
+                                        <!-- Job Fixed Fields -->
+                                        <group string="Job Fixing Details" invisible="not show_job_fixed">
+                                            <field name="number_of_job_fixed_single_visit"/>
+                                            <field name="number_of_wo"/>
+                                        </group>
+                                        
+                                        <!-- Presence vs Schedule Fields -->
+                                        <group string="Presence vs Schedule Details" invisible="not show_presence_schedule">
+                                            <field name="number_of_job_attend"/>
+                                            <field name="number_of_job_scheduled"/>
+                                        </group>
+                                        
+                                        <!-- Service Reports Fields -->
+                                        <group string="Service Reports Details" invisible="not show_service_reports">
+                                            <field name="number_of_job_completed"/>
+                                            <field name="number_of_job_submitted"/>
+                                        </group>
+                                        
+                                        <!-- Safety Incidents Fields -->
+                                        <group string="Safety Incidents Details" invisible="not show_safety_incidents">
+                                            <field name="number_of_job_opportunities"/>
+                                            <field name="number_of_incidents"/>
+                                        </group>
+                                        
+                                        <!-- Quality Score Fields -->
+                                        <group string="Quality Score Details" invisible="not show_quality_score">
+                                            <field name="achieve_rating"/>
+                                        </group>
+                                        
+                                        <!-- Revenue Fields -->
+                                        <group string="Revenue Details" invisible="not show_revenue">
+                                            <field name="previous_year_revenue"/>
+                                            <field name="current_year_revenue"/>
+                                            <field name="revenue_increased" readonly="1"/>
+                                        </group>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Employee Performance Action -->
+    <record id="action_employee_performance_entries" model="ir.actions.act_window">
+        <field name="name">Employee Performance</field>
+        <field name="res_model">employee.performance</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
